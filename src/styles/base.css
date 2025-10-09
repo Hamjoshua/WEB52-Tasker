@@ -7,14 +7,24 @@
     --text-color: #F0E3CA;
 }
 
-button, .card {
+body {
+    background-color: #1B1A17;
+}
+
+button, .card, input, textarea {
+    border-color: var(--accent-dark-color);
     border-style: solid;
     border-radius: 7px;
-    border-color: var(--accent-color);
+    border-width: 2px;    
     color: var(--text-color);
     background-color: var(--primary-dark-color);
     background-position: center;
     background-repeat: no-repeat;
+}
+
+input, textarea {    
+    min-height: 32px;    
+    padding: 0px 10px;
 }
 
 button:hover {
@@ -28,16 +38,17 @@ button:active {
 }
 
 button.btn-add {
+    border-color: var(--accent-color);
     padding: 35px;
     font-size: 24px;
-    color: var(--accent-color)
+    border-radius: 10px;    
 }
 
 button.btn-delete {
     position: absolute;
     right: 10px;
     padding: 16px;
-    color: #FF8303;
+    border-color: var(--accent-dark-color);
 }
 
 button.btn-icon {
@@ -95,7 +106,7 @@ button.btn-text {
     gap: 10px;
 }
 
-.card {
+.card {    
     background-color: var(--on-primary-color);
     padding: 16px;
     display: flex;

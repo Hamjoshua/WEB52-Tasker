@@ -132,3 +132,19 @@ button.btn-text {
     flex-direction: column;
     gap: 2px
 }
+
+.no-tasks {
+    margin: 100px;
+    flex-direction: column;
+    display: flex;
+    color: white;
+    justify-content: center;
+    font-size: 24px;
+    height: 53px;
+    align-items: center;
+}
+
+.no-tasks hr {
+    width: 64px;
+    border-color: var(--accent-color);
+}

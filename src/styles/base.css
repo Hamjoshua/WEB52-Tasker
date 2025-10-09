@@ -127,6 +127,7 @@ button.btn-text {
 }
 
 .tool-panel-inputs {
+    flex-basis: 100%;
     display: flex;
     flex-direction: column;
     gap: 2px

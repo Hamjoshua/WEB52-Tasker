@@ -108,3 +108,15 @@ button.btn-text {
     font-weight: 500;
     line-height: 100%;
 }
+
+.tool-panel {
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+}
+
+.tool-panel-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 2px
+}

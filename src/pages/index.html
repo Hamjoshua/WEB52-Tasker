@@ -3,13 +3,15 @@
 
 <head>
     <title>Tasker</title>
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/base.css">
 </head>
 
 <body>
     <div class="tool-panel">
         <div class="tool-panel-inputs">
             <input type="text" placeholder="Title..." id="titleField">
-            <textarea placeholder="About..." id="aboutField">
+            <textarea placeholder="About..." id="aboutField"></textarea>
         </div>
         <button class="btn-add"></button>
     </div>
@@ -22,9 +24,9 @@
                 <button class="btn-delete"></button>
             </div>
             <div class="actions hidden">
-                <button class="btn-share"></button>
-                <button class="btn-info"></button>
-                <button class="btn-edit"></button>
+                <button class="btn-icon icon-share"></button>
+                <button class="btn-icon icon-info"></button>
+                <button class="btn-icon icon-edit"></button>
             </div>
         </div>
         <div class="card-with-actions">
@@ -34,16 +36,16 @@
                 <button class="btn-delete"></button>
             </div>
             <div class="actions showed">
-                <button class="btn-share"></button>
-                <button class="btn-info"></button>
-                <button class="btn-edit"></button>
+                <button class="btn-icon icon-share"></button>
+                <button class="btn-icon icon-info"></button>
+                <button class="btn-icon icon-edit"></button>
             </div>
         </div>
     </div>
 
     <div class="alert bottomed task-info">
         <input type="text" placeholder="Title..." id="titleField">
-        <textarea class="text-area-maxed" placeholder="About..." id="aboutField">
+        <textarea class="text-area-maxed" placeholder="About..." id="aboutField"></textarea>
             <div class="task-info-buttons">
                 <button class="btn-text">Cancel</button>
                 <button class="btn-text">Save</button>

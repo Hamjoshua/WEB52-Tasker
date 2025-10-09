@@ -1,6 +1,7 @@
 :root {
-    --primary-color: #1B1A17;
-    --primary-dark-color: #4d4a43;
+    --primary-color: #1F1E1B;
+    --on-primary-color: #242320;
+    --primary-dark-color: #1B1A17;
     --accent-color: #FF8303;
     --accent-dark-color: #A35709;
     --text-color: #F0E3CA;
@@ -11,7 +12,7 @@ button, .card {
     border-radius: 7px;
     border-color: var(--accent-color);
     color: var(--text-color);
-    background-color: var(--primary-color);
+    background-color: var(--primary-dark-color);
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -72,8 +73,6 @@ button.btn-text {
     background-image: url(../assets/icons/share.png);
 }
 
-
-
 .actions {
     display: flex;
     gap: 10px;
@@ -97,6 +96,7 @@ button.btn-text {
 }
 
 .card {
+    background-color: var(--on-primary-color);
     padding: 16px;
     display: flex;
     gap: 5px;

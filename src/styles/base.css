@@ -9,6 +9,7 @@
 
 body {
     background-color: #1B1A17;
+    padding: 0% 25%;
 }
 
 button, .card, input, textarea {
@@ -107,6 +108,7 @@ button.btn-text {
 }
 
 .card {    
+    position: relative;
     background-color: var(--on-primary-color);
     padding: 16px;
     display: flex;

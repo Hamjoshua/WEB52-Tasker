@@ -28,7 +28,7 @@ input, textarea {
 }
 
 button:hover {
-    background-color: var(--primary-dark-color);
+    background-color: var(--text-color);
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
@@ -89,7 +89,7 @@ button.btn-text {
     gap: 10px;
     flex-direction: row;
     justify-content: end;
-    z-index: -1;
+    z-index: 1;
 }
 
 .actions.showed {
@@ -103,7 +103,7 @@ button.btn-text {
 .card-with-actions {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 10px;    
 }
 
 .card {    
@@ -111,6 +111,7 @@ button.btn-text {
     padding: 16px;
     display: flex;
     gap: 5px;
+    z-index: 2;
     flex-direction: column;
 }
 

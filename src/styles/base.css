@@ -157,13 +157,7 @@ button.btn-text {
 }
 
 .task-info {
-    padding: 20px;
-    border-radius: 10px;
     gap: 10px;
-    background-color: var(--on-primary-color);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 
 .task-info-buttons {
@@ -190,6 +184,33 @@ button.btn-text {
 }
 
 .alert>div {
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--on-primary-color);
     align-self: center;
     min-width: 50%;
+}
+
+.task-delete {
+    min-height: 100px;
+    position: relative;
+}
+
+.title {
+    font-size: 24px;
+    color: var(--text-color);
+    padding: 20px 0px 40px 0px;
+}
+
+.task-delete::after {
+    content: "";
+    top: 0;
+    background-color: var(--accent-color);
+    width: 100%;
+    position: absolute;
+    height: 5px;
 }

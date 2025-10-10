@@ -12,20 +12,24 @@ body {
     padding: 0% 25%;
 }
 
-button, .card, input, textarea {
+button,
+.card,
+input,
+textarea {
     border-color: var(--accent-dark-color);
     border-style: solid;
     border-radius: 7px;
-    border-width: 2px;    
+    border-width: 2px;
     color: var(--text-color);
     background-color: var(--primary-dark-color);
     background-position: center;
     background-repeat: no-repeat;
 }
 
-input, textarea {    
-    min-height: 32px;    
-    padding: 0px 10px;    
+input,
+textarea {
+    min-height: 32px;
+    padding: 0px 10px;
 }
 
 button:hover {
@@ -42,7 +46,7 @@ button.btn-add {
     border-color: var(--accent-color);
     padding: 35px;
     font-size: 24px;
-    border-radius: 10px;    
+    border-radius: 10px;
 }
 
 button.btn-delete {
@@ -104,10 +108,10 @@ button.btn-text {
 .card-with-actions {
     display: flex;
     flex-direction: column;
-    gap: 10px;    
+    gap: 10px;
 }
 
-.card {    
+.card {
     position: relative;
     background-color: var(--on-primary-color);
     padding: 16px;
@@ -150,4 +154,42 @@ button.btn-text {
 .no-tasks hr {
     width: 64px;
     border-color: var(--accent-color);
+}
+
+.task-info {
+    padding: 20px;
+    border-radius: 10px;
+    gap: 10px;
+    background-color: var(--on-primary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.task-info-buttons {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.text-area-maxed {
+    height: 50vh;
+    resize: none;
+}
+
+.alert {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 4;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.alert>div {
+    align-self: center;
+    min-width: 50%;
 }

@@ -27,15 +27,15 @@ class TaskControl {
             <button class="btn-delete icon-delete" onclick="deleteTask(event)"></button>
             <div class="actions hidden">
                 <button class="btn-icon icon-share"></button>
-                <button class="btn-icon icon-info"></button>
-                <button class="btn-icon icon-edit"></button>
+                <button class="btn-icon icon-info" onclick="showTaskPopup(event, false, ${title}, ${about})"></button>
+                <button class="btn-icon icon-edit" onclick="showTaskPopup(event, true, ${title}, ${about})"></button>
             </div>
         </div>`
         this.tasks.push(newTask)
         checkIfNoTasks(this.tasks.length)
     }
 
-    show(){
+    show() {
         console.log("yes sir")
     }
 
@@ -82,10 +82,39 @@ function checkIfNoTasks(len) {
     no_tasks.classList.toggle("fully-hidden", len > 0);
 }
 
-function changeVisibilityOfActions(event){    
+function changeVisibilityOfActions(event) {
     console.log("toggle req")
     let card_actions = event.target.parentElement // мы знаем, что вызов идет с title
     let actions = card_actions.querySelector(".actions")
     actions.classList.toggle("hidden")
-    actions.classList.toggle("showed")    
+    actions.classList.toggle("showed")
+}
+
+function showTaskPopup(event, isEdit, title, about) {
+    let readonly = isEdit ? "" : "readonly"
+    let editButtons = `
+        <button class="btn-text" onclick="closePopup()">Cancel</button>
+        <button class="btn-text">Save</button>
+    `
+    let viewButtons = `
+        <button class="btn-text" onclick="closePopup()">Close</button>
+    `
+
+    document.body.innerHTML += `
+        <div class="alert">
+            <div class="bottomed task-info">
+                <input type="text" value=${title} placeholder="Title..." id="popupTitleField" ${readonly}>
+                <textarea class="text-area-maxed" placeholder="About..." id="popupAboutField" ${readonly}>${about}</textarea>
+                <div class="task-info-buttons">
+                    ${isEdit ? editButtons : viewButtons}
+                </div>
+            </div>
+        </div>
+    `
+}
+
+function closePopup(){
+    let alertPopup = document.body.querySelector('.alert')
+    console.log(alertPopup)
+    document.body.removeChild(alertPopup)
 }

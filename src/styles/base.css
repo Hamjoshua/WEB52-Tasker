@@ -207,8 +207,7 @@ button.btn-text {
 .alert>div {
     padding: 20px;
     border-radius: 10px;
-    display: flex;
-    align-items: center;
+    display: flex;    
     flex-direction: column;
     justify-content: center;
     background-color: var(--on-primary-color);

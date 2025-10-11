@@ -54,7 +54,7 @@
 }
 
 .no-tasks {
-    margin: 100px;
+    margin: 100px 0px;
     flex-direction: column;
     display: flex;
     color: white;

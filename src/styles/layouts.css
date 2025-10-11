@@ -10,7 +10,18 @@
     justify-content: center;
 }
 
-.alert>div {
+.share-popup {
+    border-radius: 10px;
+    background-color: var(--primary-dark-color) !important;
+    flex-direction: row;
+    padding: 15px;
+    gap: 15px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.popup {
     padding: 20px;
     border-radius: 10px;
     display: flex;

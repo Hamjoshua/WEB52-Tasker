@@ -17,3 +17,9 @@
 .icon-share {
     background-image: url(../assets/icons/share.png);
 }
+
+.share-icon {
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+}

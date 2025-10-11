@@ -15,7 +15,7 @@ class PopupRenderer {
         const popup = document.createElement('div')
         popup.className = 'alert'
         popup.innerHTML = `
-            <div class="bottomed task-info">
+            <div class="bottomed task-info popup">
                 <input type="text" value="${task.title}" placeholder="Title..." id="popupTitleField" ${isEdit ? '' : 'readonly'}>
                 <textarea class="text-area-maxed" placeholder="About..." id="popupAboutField" ${isEdit ? '' : 'readonly'}>${task.about}</textarea>
                 <div class="task-info-buttons">
@@ -40,11 +40,31 @@ class PopupRenderer {
         document.body.appendChild(popup)
     }
 
+    static renderShare() {
+        const popup = document.createElement('div')
+        popup.className = 'alert'
+        popup.innerHTML = `
+        <div class="share-popup">            
+            <img class="share-icon" src="../assets/icons/copy.png">           
+            <img class="share-icon" src="../assets/icons/vk.png">
+            <img class="share-icon" src="../assets/icons/telegram.png">
+            <img class="share-icon" src="../assets/icons/whatsapp.png">
+            <img class="share-icon" src="../assets/icons/facebook.png">
+        </div>
+        `
+        let imgs = popup.querySelectorAll(".share-icon")        
+        imgs.forEach(elem => {            
+            elem.addEventListener('click', PopupRenderer.closePopup)
+        })
+
+        document.body.appendChild(popup)
+    }
+
     static renderDeletePopup(index, onDelete) {
         const popup = document.createElement('div')
         popup.className = 'alert'
         popup.innerHTML = `            
-        <div class="task-delete">
+        <div class="task-delete popup">
             <span class="title">Delete this task?</span>
             <div class="task-info-buttons">
                 <button class="btn-text yes">Yes</button>
@@ -63,8 +83,7 @@ class PopupRenderer {
     }
 
     static closePopup() {
-        let popup = document.body.querySelector('.alert')
-        console.log(popup)
+        let popup = document.body.querySelector('.alert')        
         document.body.removeChild(popup)
     }
 }
@@ -92,11 +111,13 @@ class TaskRenderer {
             // Навешиваем действия
             const card = taskEl.querySelector('.card')
             const deleteBtn = taskEl.querySelector('.btn-delete')
+            const shareBtn = taskEl.querySelector('.icon-share')
             const editBtn = taskEl.querySelector('.icon-edit')
             const infoBtn = taskEl.querySelector('.icon-info')
 
             card.addEventListener('click', () => this.onToggleActions(taskEl))
             deleteBtn.addEventListener('click', () => onDelete(index))
+            shareBtn.addEventListener('click', PopupRenderer.renderShare)
             editBtn.addEventListener('click', () => onEdit(task, index, taskEl))
             infoBtn.addEventListener('click', () => onView(task))
         })

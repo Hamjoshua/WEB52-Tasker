@@ -39,6 +39,7 @@
     width: 100%;
     position: absolute;
     height: 5px;
+    left: 0;
 }
 
 .no-tasks {

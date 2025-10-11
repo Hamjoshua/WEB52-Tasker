@@ -40,6 +40,28 @@ class PopupRenderer {
         document.body.appendChild(popup)
     }
 
+    static renderDeletePopup(index, onDelete) {
+        const popup = document.createElement('div')
+        popup.className = 'alert'
+        popup.innerHTML = `            
+        <div class="task-delete">
+            <span class="title">Delete this task?</span>
+            <div class="task-info-buttons">
+                <button class="btn-text yes">Yes</button>
+                <button class="btn-text no">No</button>
+            </div>
+        </div>
+        `
+
+        popup.querySelector('.yes').addEventListener('click', function () {
+            onDelete(index);
+            PopupRenderer.closePopup();
+        })
+        popup.querySelector('.no').addEventListener('click', PopupRenderer.closePopup)
+
+        document.body.appendChild(popup)
+    }
+
     static closePopup() {
         let popup = document.body.querySelector('.alert')
         console.log(popup)
@@ -144,7 +166,11 @@ class TaskControl {
         this.render()
     }
 
-    delete(index) {
+    delete(index) {        
+        PopupRenderer.renderDeletePopup(index, (index) => this.confirmDelete(index))
+    }
+
+    confirmDelete(index) {
         this.tasks.splice(index, 1)
         this.render()
     }

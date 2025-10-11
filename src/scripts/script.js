@@ -39,13 +39,21 @@ class TaskControl {
 
 var taskControl = new TaskControl()
 
-function addTask() {
-    let title = document.getElementById("titleField").value
-    let about = document.getElementById("aboutField").value
-    taskControl.add(title, about)
-}
+document.querySelector(".btn-add").addEventListener('click', function (event) {
+    let titleField = document.getElementById("titleField")
+    let aboutField = document.getElementById("aboutField")
+
+    let isOkey = titleField.checkValidity() && aboutField.checkValidity()
+    titleField.reportValidity()
+    aboutField.reportValidity()
+    
+    if (!isOkey) {
+        return
+    }
+    taskControl.add(titleField.value, aboutField.value)
+})
 
 function checkIfNoTasks(len) {
-    const no_tasks = document.getElementsByClassName("no-tasks")[0]    
+    const no_tasks = document.getElementsByClassName("no-tasks")[0]
     no_tasks.classList.toggle("fully-hidden", len > 0);
 }

@@ -1,0 +1,77 @@
+.alert {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 4;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.alert>div {
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--on-primary-color);
+    align-self: center;
+    min-width: 50%;
+}
+
+.task-delete {
+    min-height: 100px;
+    position: relative;
+}
+
+.title {
+    font-size: 24px;
+    color: var(--text-color);
+    padding: 20px 0px 40px 0px;
+}
+
+.task-delete::after {
+    content: "";
+    top: 0;
+    background-color: var(--accent-color);
+    width: 100%;
+    position: absolute;
+    height: 5px;
+}
+
+.no-tasks {
+    margin: 100px;
+    flex-direction: column;
+    display: flex;
+    color: white;
+    justify-content: center;
+    font-size: 24px;
+    height: 53px;
+    align-items: center;
+}
+
+.no-tasks hr {
+    width: 64px;
+    border-color: var(--accent-color);
+}
+
+.task-info {
+    gap: 10px;
+}
+
+.task-info-buttons {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.text-area-maxed {
+    height: 50vh;
+    resize: none;
+}
+
+.fully-hidden {
+    display: none;
+}

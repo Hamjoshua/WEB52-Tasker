@@ -2,12 +2,13 @@
 <html lang="en">
 
 <head>
+    <meta charset="utf-8">
     <title>Tasker</title>
     <link rel="stylesheet" href="../styles/reset.css">
     <link rel="stylesheet" href="../styles/base.css">
 </head>
 
-<body>
+<body>    
     <a
         href="https://www.figma.com/design/U09ssoBkhIpaSLmO5v0AQ7/To-Do-List-(Community)?node-id=0-1&node-type=CANVAS&t=eVBh72HtdKbEZRmj-0">example</a>
     <div class="tool-panel">
@@ -15,7 +16,7 @@
             <input type="text" placeholder="Title..." id="titleField">
             <textarea placeholder="About..." id="aboutField"></textarea>
         </div>
-        <button class="btn-add icon-add"></button>
+        <button class="btn-add icon-add" onclick="addTask()"></button>
     </div>
     <div class="task-container">
         <div class="no-tasks">
@@ -23,7 +24,7 @@
             No tasks
             <hr>
         </div>
-        <div class="card-with-actions">
+        <div class="card-with-actions" id="task1">
             <div class="card">
                 <span class="task-title">Task Title...</span>
                 <span class="task-about">Task body about this task...</span>
@@ -35,7 +36,7 @@
                 <button class="btn-icon icon-edit"></button>
             </div>
         </div>
-        <div class="card-with-actions">
+        <div class="card-with-actions" id="task2">
             <div class="card">
                 <span class="task-title">Task Title...</span>
                 <span class="task-about">Task body about this task...</span>
@@ -69,6 +70,7 @@
     </div>    
 
      -->
+    <script type="text/javascript" src="../scripts/script.js"></script>
 </body>
 
 </html>

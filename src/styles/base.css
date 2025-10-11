@@ -112,6 +112,7 @@ button.btn-text {
 }
 
 .card {
+    margin: 10px 0px;
     position: relative;
     background-color: var(--on-primary-color);
     padding: 16px;
@@ -193,6 +194,10 @@ button.btn-text {
     background-color: var(--on-primary-color);
     align-self: center;
     min-width: 50%;
+}
+
+.fully-hidden {
+    display: none;
 }
 
 .task-delete {

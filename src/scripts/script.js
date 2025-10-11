@@ -18,11 +18,11 @@ class TaskControl {
 
     add(title, about) {
         let newTask = new Task(title, about)
-        this.task_container.innerHTML += `<div class="card-with-actions" id="task${this.tasks.length}">
+        this.task_container.innerHTML += `<div class="card-with-actions">
             <div class="card">
                 <span class="task-title">${title}</span>
                 <span class="task-about">${about}</span>
-                <button class="btn-delete icon-delete"></button>
+                <button class="btn-delete icon-delete" onclick="deleteTask(event)"></button>
             </div>
             <div class="actions hidden">
                 <button class="btn-icon icon-share"></button>
@@ -34,7 +34,21 @@ class TaskControl {
         checkIfNoTasks(this.tasks.length)
     }
 
+    delete(element) {
+        let index = 0
+        Array.from(this.task_container.children).forEach(child => {
+            if (child == element) {
+                return
+            }
+            ++index
+        });
 
+        this.task_container.removeChild(element)
+        console.log(index)
+        this.tasks.splice(index - 1, 1)
+
+        checkIfNoTasks(this.tasks.length)
+    }
 }
 
 var taskControl = new TaskControl()
@@ -46,12 +60,17 @@ document.querySelector(".btn-add").addEventListener('click', function (event) {
     let isOkey = titleField.checkValidity() && aboutField.checkValidity()
     titleField.reportValidity()
     aboutField.reportValidity()
-    
+
     if (!isOkey) {
         return
     }
     taskControl.add(titleField.value, aboutField.value)
 })
+
+function deleteTask(event) {
+    console.log(event.target.parentElement.parentElement)
+    taskControl.delete(event.target.parentElement.parentElement)
+}
 
 function checkIfNoTasks(len) {
     const no_tasks = document.getElementsByClassName("no-tasks")[0]

@@ -73,8 +73,8 @@ document.querySelector(".btn-add").addEventListener('click', function (event) {
 })
 
 function deleteTask(event) {
-    console.log(event.target.parentElement.parentElement)
-    taskControl.delete(event.target.parentElement.parentElement)
+    console.log(event.target.parentElement)
+    taskControl.delete(event.target.parentElement)
 }
 
 function checkIfNoTasks(len) {

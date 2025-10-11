@@ -79,8 +79,6 @@ button.btn-text {
     background-image: url(../assets/icons/share.png);
 }
 
-
-
 .actions {
     display: flex;
     gap: 10px;
@@ -154,3 +152,10 @@ button.btn-text {
     gap: 2px
 }
 
+.example-link {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--on-primary-color);
+    text-decoration: none;
+}

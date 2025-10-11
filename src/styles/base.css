@@ -33,17 +33,18 @@ textarea {
 }
 
 button:hover {
-    background-color: var(--text-color);
-    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    background-color: var(--on-primary-color);
+    transition: 0.1s;
 }
 
 button:active {
     background-color: var(--accent-dark-color);
-    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: 0.1s;
 }
 
 button.btn-add {
     border-color: var(--accent-color);
+    transition: 0.15s;
     padding: 35px;
     font-size: 24px;
     border-radius: 10px;

@@ -19,6 +19,12 @@ textarea {
     padding: 0px 10px;
 }
 
+input:read-only,
+textarea:read-only {
+    border-color: var(--primary-dark-color);
+    pointer-events: none;
+}
+
 button:hover {
     background-color: var(--on-primary-color);
     transition: 0.1s;
@@ -57,26 +63,6 @@ button.btn-text {
     font-size: 10px;
     min-width: 64px;
     padding: 5px 7px;
-}
-
-.icon-add {
-    background-image: url(../assets/icons/add.png);
-}
-
-.icon-delete {
-    background-image: url(../assets/icons/close.png);
-}
-
-.icon-edit {
-    background-image: url(../assets/icons/edit.png);
-}
-
-.icon-info {
-    background-image: url(../assets/icons/info.png);
-}
-
-.icon-share {
-    background-image: url(../assets/icons/share.png);
 }
 
 .actions {

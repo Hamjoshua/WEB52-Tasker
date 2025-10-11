@@ -35,11 +35,17 @@ class TaskControl {
         checkIfNoTasks(this.tasks.length)
     }
 
-    show() {
-        console.log("yes sir")
+    changeTask(element, newTitle, newAbout){
+        let index = this.getIndexOfChild(element)
+
+        let task = this.tasks[index]
+        task.edit(newTitle, newAbout)
+
+        element.querySelector(".task-title").innerText = newTitle
+        element.querySelector(".task-about").innerText = newTitle
     }
 
-    delete(element) {
+    getIndexOfChild(element){
         let index = 0
         Array.from(this.task_container.children).forEach(child => {
             if (child == element) {
@@ -48,9 +54,15 @@ class TaskControl {
             ++index
         });
 
+        return index - 1;
+    }
+
+    delete(element) {
+        let index = this.getIndexOfChild(element)
+
         this.task_container.removeChild(element)
         console.log(index)
-        this.tasks.splice(index - 1, 1)
+        this.tasks.splice(index, 1)
 
         checkIfNoTasks(this.tasks.length)
     }
@@ -94,11 +106,12 @@ function showTaskPopup(event, isEdit, title, about) {
     let readonly = isEdit ? "" : "readonly"
     let editButtons = `
         <button class="btn-text" onclick="closePopup()">Cancel</button>
-        <button class="btn-text">Save</button>
+        <button id="saveTask" class="btn-text">Save</button>
     `
     let viewButtons = `
         <button class="btn-text" onclick="closePopup()">Close</button>
     `
+    var taskElement = event.target.parentElement.parentElement;
 
     document.body.innerHTML += `
         <div class="alert">
@@ -111,6 +124,11 @@ function showTaskPopup(event, isEdit, title, about) {
             </div>
         </div>
     `
+
+    let saveTask = document.body.querySelector("#saveTask")
+    saveTask.addEventListener('click', function (event) {
+        taskControl.changeTask(taskElement)
+    })
 }
 
 function closePopup(){

@@ -13,10 +13,13 @@ textarea {
     background-repeat: no-repeat;
 }
 
-input,
-textarea {
+input {
     min-height: 32px;
     padding: 0px 10px;
+}
+
+textarea {
+    padding: 7px 10px;
 }
 
 input:read-only,

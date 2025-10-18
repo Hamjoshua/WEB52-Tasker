@@ -11,9 +11,20 @@ class Task {
 }
 
 class PopupRenderer {
-    static renderTaskInfoPopup(isEdit, task, index, onSave) {
+    getAlertDOM(){
         const popup = document.createElement('div')
         popup.className = 'alert'
+        popup.addEventListener('click', function(event){
+            event.stopPropagation()
+            debugger
+            this.closePopup()
+        })
+
+        return popup
+    }
+
+    renderTaskInfoPopup(isEdit, task, index, onSave) {
+        const popup = this.getAlertDOM()
         popup.innerHTML = `
             <div class="bottomed task-info popup">
                 <input type="text" value="${task.title}" placeholder="Title..." id="popupTitleField" ${isEdit ? '' : 'readonly'}>
@@ -25,7 +36,7 @@ class PopupRenderer {
             </div>
         `
 
-        popup.querySelector('.cancel').addEventListener('click', PopupRenderer.closePopup)
+        popup.querySelector('.cancel').addEventListener('click', this.closePopup)
 
         let saveTask = popup.querySelector('.save')
         if (saveTask != null) {
@@ -33,16 +44,15 @@ class PopupRenderer {
                 const titleInput = popup.querySelector('#popupTitleField')
                 const aboutInput = popup.querySelector('#popupAboutField')
                 onSave(index, titleInput.value, aboutInput.value)
-                PopupRenderer.closePopup()
+                this.closePopup()
             })
         }
 
         document.body.appendChild(popup)
     }
 
-    static renderShare() {
-        const popup = document.createElement('div')
-        popup.className = 'alert'
+    renderShare() {
+        const popup = this.getAlertDOM()
         popup.innerHTML = `
         <div class="share-popup">            
             <img class="share-icon" src="../assets/icons/copy.png">           
@@ -54,15 +64,14 @@ class PopupRenderer {
         `
         let imgs = popup.querySelectorAll(".share-icon")        
         imgs.forEach(elem => {            
-            elem.addEventListener('click', PopupRenderer.closePopup)
+            elem.addEventListener('click', this.closePopup)
         })
 
         document.body.appendChild(popup)
     }
 
-    static renderDeletePopup(index, onDelete) {
-        const popup = document.createElement('div')
-        popup.className = 'alert'
+    renderDeletePopup(index, onDelete) {
+        const popup = this.getAlertDOM()
         popup.innerHTML = `            
         <div class="task-delete popup">
             <span class="title">Delete this task?</span>
@@ -75,14 +84,14 @@ class PopupRenderer {
 
         popup.querySelector('.yes').addEventListener('click', function () {
             onDelete(index);
-            PopupRenderer.closePopup();
+            this.closePopup();
         })
-        popup.querySelector('.no').addEventListener('click', PopupRenderer.closePopup)
+        popup.querySelector('.no').addEventListener('click', this.closePopup)
 
         document.body.appendChild(popup)
     }
 
-    static closePopup() {
+    closePopup() {
         let popup = document.body.querySelector('.alert')        
         document.body.removeChild(popup)
     }
@@ -92,6 +101,7 @@ class TaskRenderer {
     constructor(task_cont_selector, no_task_selector) {
         this.container = document.querySelector(task_cont_selector)
         this.no_task_selector = no_task_selector
+        this.popup_renderer = new PopupRenderer()
     }
 
     checkIfNoTasks(len) {
@@ -116,7 +126,7 @@ class TaskRenderer {
 
             card.addEventListener('click', () => this.onToggleActions(taskEl))
             deleteBtn.addEventListener('click', () => onDelete(index))
-            shareBtn.addEventListener('click', PopupRenderer.renderShare)
+            shareBtn.addEventListener('click', this.popup_renderer.renderShare)
             editBtn.addEventListener('click', () => onEdit(task, index, taskEl))
             infoBtn.addEventListener('click', () => onView(task))
         })
@@ -188,6 +198,7 @@ class TaskControl {
         this.task_renderer = task_renderer
         this.bindAdd()
         this.render()
+        this.popup_renderer = new PopupRenderer()
     }
 
     render() {
@@ -223,7 +234,7 @@ class TaskControl {
     }
 
     delete(index) {        
-        PopupRenderer.renderDeletePopup(index, (index) => this.confirmDelete(index))
+        this.popup_renderer.renderDeletePopup(index, (index) => this.confirmDelete(index))
     }
 
     confirmDelete(index) {
@@ -232,11 +243,11 @@ class TaskControl {
     }
 
     view(task) {
-        PopupRenderer.renderTaskInfoPopup(false, task, null, null)
+        this.popup_renderer.renderTaskInfoPopup(false, task, null, null)
     }
 
     edit(task, index) {
-        PopupRenderer.renderTaskInfoPopup(true, task, index, (index, title, about) => this.saveChangings(index, title, about))
+        this.popup_renderer.renderTaskInfoPopup(true, task, index, (index, title, about) => this.saveChangings(index, title, about))
         this.render()
     }
 

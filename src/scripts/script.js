@@ -175,7 +175,9 @@ class TasksRepository {
     }
 
     edit(index, title, about){
-        this.tasks[index].edit(title, about)
+        let task = this.tasks[index]
+        task.title = title
+        task.about = about
         this.updateItems()
     }
 }

@@ -103,7 +103,6 @@ class TaskRenderer {
         this.container.innerHTML = ""
 
         this.checkIfNoTasks(tasks.length)
-
         tasks.forEach((task, index) => {
             const taskEl = this.createTaskElement(task, index)
             this.container.appendChild(taskEl)
@@ -148,16 +147,50 @@ class TaskRenderer {
     }
 }
 
+class TasksRepository {
+    constructor(){
+        this.tasks = []
+        let tasks_from_storage = localStorage.getItem("tasks")
+        if(tasks_from_storage != "" && tasks_from_storage != null){
+            this.tasks = JSON.parse(tasks_from_storage)
+        }
+    }
+
+    updateItems(){
+        localStorage.setItem("tasks", JSON.stringify(this.tasks))
+    }
+
+    items(){
+        return this.tasks;
+    }
+
+    push(task){
+        this.tasks.push(task)
+        this.updateItems()
+    }
+
+    splice(index){
+        this.tasks.splice(index, 1)
+        this.updateItems()
+    }
+
+    edit(index, title, about){
+        this.tasks[index].edit(title, about)
+        this.updateItems()
+    }
+}
+
 class TaskControl {
     constructor(task_renderer) {
-        this.tasks = []
+        this.tasks_repo = new TasksRepository()
         this.task_renderer = task_renderer
         this.bindAdd()
+        this.render()
     }
 
     render() {
         this.task_renderer.render(
-            this.tasks,
+            this.tasks_repo.items(),
             (index) => this.delete(index),
             (task) => this.view(task),
             (task, index) => this.edit(task, index)
@@ -183,7 +216,7 @@ class TaskControl {
 
     add(title, about) {
         let task = new Task(title, about)
-        this.tasks.push(task)
+        this.tasks_repo.push(task)
         this.render()
     }
 
@@ -192,7 +225,7 @@ class TaskControl {
     }
 
     confirmDelete(index) {
-        this.tasks.splice(index, 1)
+        this.tasks_repo.splice(index)
         this.render()
     }
 
@@ -206,7 +239,7 @@ class TaskControl {
     }
 
     saveChangings(index, title, about) {
-        this.tasks[index].edit(title, about)
+        this.tasks_repo.edit(index, title, about)
         this.render()
     }
 }

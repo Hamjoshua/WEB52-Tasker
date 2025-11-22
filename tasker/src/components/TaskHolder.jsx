@@ -75,9 +75,9 @@ export default function TasksHolder() {
     return (
         <div>
             <FormAdd onAdd={addTask} />
-            {tasks.length === 0 && <NoTasks />}
+            {tasks && tasks.length === 0 && <NoTasks />}
             <div className="task-container">
-                {tasks.map((task, idx) => (
+                {tasks.map((task, idx) => ( // idx в мапе антихайп, это плохо
                     <Task
                         key={idx}
                         task={task}

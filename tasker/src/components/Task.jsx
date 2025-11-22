@@ -7,12 +7,14 @@ export default function Task({ task, index, onShare, onDelete, onEdit, onView })
     const handleCardClicked = () => {
         setIsShowed(!isShowedTask)
     }
+
+    const {title, about} = task
     
     return (
         <div className="card-with-actions">
             <div className="card" onClick={handleCardClicked}>
-                <span className="task-title">{task.title}</span>
-                <span className="task-about">{task.about}</span>
+                <span className="task-title">{title}</span>
+                <span className="task-about">{about}</span>
             </div>
 
             <button className="btn-delete icon-delete" onClick={() => onDelete(index)}></button>

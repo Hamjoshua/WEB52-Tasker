@@ -4,7 +4,7 @@ import { TaskObservable } from "../store/task";
 import { useState } from "react";
 
 
-export const Task = observer((task: TaskObservable) => {
+export const Task = observer(({ task }: { task: TaskObservable }) => {
     // здесь юзстейт остался. будет странно хранить информацию о сокрытии карточки внутри сущности
     const [isShowedTask, setIsShowed] = useState(false)
 

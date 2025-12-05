@@ -11,7 +11,7 @@ class TasksHolderStore {
     showPopup = {
         visible: false,
         taskId: null as string | null,
-        mode: 'view' as 'view' | 'edit',
+        isEdit: false,
         // временные поля редактирования (чтобы не мутировать оригинал до Save)
         draftTitle: '',
         draftAbout: ''
@@ -29,13 +29,13 @@ class TasksHolderStore {
     };
 
     // --- методы ---
-    openShowPopup(taskId: string, mode: 'view' | 'edit' = 'view') {
+    openShowPopup(taskId: string, editMode: boolean) {
         const task = this.getTaskById(taskId);
         if (!task) return;
         this.showPopup = {
             visible: true,
             taskId,
-            mode,
+            isEdit: editMode,
             draftTitle: task.title,
             draftAbout: task.about
         };

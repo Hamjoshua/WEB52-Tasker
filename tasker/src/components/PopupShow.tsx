@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite"
 import { taskHolderStore } from "../store/taskHolder";
 
 
-const PopupShow = observer(() => {
+export const PopupShow = observer(() => {
     const { showPopup, closeCurrentPopup } = taskHolderStore
 
     return (

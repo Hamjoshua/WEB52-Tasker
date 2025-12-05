@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite"
 import { taskHolderStore } from "../store/taskHolder";
 
-const PopupShare = observer(() => {
+export const PopupShare = observer(() => {
     const { closeCurrentPopup } = taskHolderStore;
 
     return (

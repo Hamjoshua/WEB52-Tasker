@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, MouseEvent } from 'react'
 
 import '../styles/reset.css'
 import '../styles/fonts.css'
@@ -7,16 +7,18 @@ import '../styles/components.css'
 import '../styles/icons.css'
 import '../styles/layouts.css'
 import '../styles/adapt.css'
+import { observer } from 'mobx-react-lite'
+import { taskHolderStore } from '../store/taskHolder'
 
 
-export default function FormAdd({ onAdd }) {
+export const FormAdd = observer(() => {
   const [title, setTitle] = useState('')
   const [about, setAbout] = useState('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e : MouseEvent) => {
     e.preventDefault()
     if (!title.trim() || !about.trim()) return
-    onAdd({ title, about })
+    taskHolderStore.addTask(title, about)
     setTitle('')
     setAbout('')
   }
@@ -36,10 +38,9 @@ export default function FormAdd({ onAdd }) {
           value={about}
           onChange={e => setAbout(e.target.value)}
           required
-        />        
+        />
       </div>
-      <button className="btn-add icon-add"
-         onClick={handleSubmit}></button>
+      <button className="btn-add icon-add" onClick={handleSubmit}></button>
     </div>
   )
-}
+})

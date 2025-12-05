@@ -1,0 +1,13 @@
+:root {
+    --primary-color: #1F1E1B;
+    --on-primary-color: #242320;
+    --primary-dark-color: #1B1A17;
+    --accent-color: #FF8303;
+    --accent-dark-color: #A35709;
+    --text-color: #F0E3CA;
+}
+
+body {
+    background-color: #1B1A17;
+    padding: 20px 25%;
+}

@@ -1,6 +1,5 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import TaskHolder from './components/TaskHolder.jsx'
+import { TasksHolder } from './components/TaskHolder.tsx'
 
 import './styles/adapt.css'
 import './styles/base.css'
@@ -12,6 +11,6 @@ import './styles/reset.css'
 
 createRoot(document.body).render(
   
-    <TaskHolder />
+    <TasksHolder />
   
 )

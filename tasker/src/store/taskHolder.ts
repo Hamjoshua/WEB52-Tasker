@@ -34,7 +34,7 @@ class TasksHolderStore {
         if (!task) return;
         this.showPopup = {
             visible: true,
-            taskId,
+            taskId: taskId,
             isEdit: editMode,
             draftTitle: task.title,
             draftAbout: task.about
@@ -42,14 +42,22 @@ class TasksHolderStore {
     }
 
     closeCurrentPopup() {
-        this.showPopup.visible = false;
-        this.showPopup.taskId = null;
+        debugger
+        if (this.showPopup) {
+            this.showPopup.visible = false;
+            this.showPopup.taskId = null;
+        }
 
-        this.confirmPopup.visible = false;
-        this.confirmPopup.taskId = null;
+        if (this.confirmPopup) {
+            this.confirmPopup.visible = false;
+            this.confirmPopup.taskId = null;
 
-        this.sharePopup.visible = false;
-        this.sharePopup.taskId = null;
+        }
+
+        if (this.sharePopup) {
+            this.sharePopup.visible = false;
+            this.sharePopup.taskId = null;
+        }
     }
 
     saveEditedTask() {
@@ -64,7 +72,7 @@ class TasksHolderStore {
     openConfirmDelete(taskId: string) {
         this.confirmPopup = {
             visible: true,
-            taskId,
+            taskId: taskId,
             message: "Delete this task?"
         };
     }

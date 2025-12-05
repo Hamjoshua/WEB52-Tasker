@@ -41,9 +41,15 @@ class TasksHolderStore {
         };
     }
 
-    closeShowPopup() {
+    closeCurrentPopup() {
         this.showPopup.visible = false;
         this.showPopup.taskId = null;
+
+        this.confirmPopup.visible = false;
+        this.confirmPopup.taskId = null;
+
+        this.sharePopup.visible = false;
+        this.sharePopup.taskId = null;
     }
 
     saveEditedTask() {
@@ -52,7 +58,7 @@ class TasksHolderStore {
         if (task) {
             task.update(this.showPopup.draftTitle, this.showPopup.draftAbout);
         }
-        this.closeShowPopup();
+        this.closeCurrentPopup();
     }
 
     openConfirmDelete(taskId: string) {
@@ -71,20 +77,9 @@ class TasksHolderStore {
         this.confirmPopup.taskId = null;
     }
 
-    cancelDelete() {
-        this.confirmPopup.visible = false;
-        this.confirmPopup.taskId = null;
-    }
-
     openSharePopup(taskId: string) {
         this.sharePopup = { visible: true, taskId };
     }
-
-    closeSharePopup() {
-        this.sharePopup.visible = false;
-        this.sharePopup.taskId = null;
-    }
-
 
     constructor() {
         this.loadFromLocalStorage()

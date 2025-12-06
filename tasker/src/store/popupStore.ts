@@ -6,6 +6,8 @@ export class PopupStore {
         makeAutoObservable(this)
 
         this.closeCurrentPopup = this.closeCurrentPopup.bind(this)
+        this.confirmSave = this.confirmSave.bind(this)
+        this.confirmDelete = this.confirmDelete.bind(this)
     }
 
     // попапы 
@@ -49,7 +51,6 @@ export class PopupStore {
     }
 
     public openShowPopup(taskId: string, editMode: boolean) {
-        debugger
         const task = taskHolderStore.getTaskById(taskId);
         if (!task) return;
         this.showPopup = {

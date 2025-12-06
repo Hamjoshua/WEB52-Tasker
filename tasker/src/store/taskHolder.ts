@@ -21,7 +21,6 @@ class TasksHolderStore {
     }
 
     loadFromLocalStorage() {
-        debugger
         const saved = localStorage.getItem('tasks');
         if (saved) {
             try {

@@ -9,11 +9,9 @@ import { observer } from 'mobx-react-lite'
 import { taskHolderStore } from '../store/taskHolder.ts'
 import { popupStore } from '../store/popupStore.ts'
 
-
-import { toJS } from "mobx";
-
 export const TasksHolder = observer(() => {
     const { sharePopup, showPopup, confirmPopup } = popupStore;
+    console.log(taskHolderStore)
 
     return (
         <div>

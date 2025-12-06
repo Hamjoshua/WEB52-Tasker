@@ -1,30 +1,35 @@
 import { makeAutoObservable, reaction } from "mobx";
 import { TaskObservable } from "../store/task.ts";
+import { Task } from "../components/Task.tsx";
 
 // todo этот класс может использовать const popup с enum параметрами
 
 class TasksHolderStore {
     tasks: TaskObservable[] = []
-    
-    constructor() { 
+
+    constructor() {
         console.log("taskHolderStore inited!!")
         this.loadFromLocalStorage()
         makeAutoObservable(this)
     }
 
-    saveEditedTask(taskId : string, draftTitle: string, draftAbout: string) {
+    saveEditedTask(taskId: string, draftTitle: string, draftAbout: string) {
         let task = this.getTaskById(taskId);
         if (task) {
             task.update(draftTitle, draftAbout);
         }
     }
-    
+
     loadFromLocalStorage() {
+        debugger
         const saved = localStorage.getItem('tasks');
         if (saved) {
             try {
                 const parsed = JSON.parse(saved);
-                this.tasks = parsed.map((t: any) => new TaskObservable(t.title, t.about));
+                parsed.forEach((t: any) => {
+                    let task = new TaskObservable(this.tasks.length, t.title, t.about)
+                    this.tasks.push(task)
+                });
             } catch (e) {
                 console.error("Failed to load tasks", e);
             }
@@ -32,7 +37,7 @@ class TasksHolderStore {
     }
 
     addTask(title: string, about: string) {
-        this.tasks.push(new TaskObservable(title, about));
+        this.tasks.push(new TaskObservable(this.tasks.length, title, about));
     }
 
     getTaskById(taskId: string) {

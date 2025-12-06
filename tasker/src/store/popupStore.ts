@@ -49,6 +49,7 @@ export class PopupStore {
     }
 
     public openShowPopup(taskId: string, editMode: boolean) {
+        debugger
         const task = taskHolderStore.getTaskById(taskId);
         if (!task) return;
         this.showPopup = {

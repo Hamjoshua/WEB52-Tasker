@@ -1,8 +1,9 @@
 import { observer } from "mobx-react-lite"
 import { taskHolderStore } from "../store/taskHolder";
+import { popupStore } from "../store/popupStore";
 
 export const PopupConfirm = observer(() => {
-    const { confirmPopup, closeCurrentPopup, confirmDelete } = taskHolderStore;
+    const { confirmPopup, closeCurrentPopup, confirmDelete } = popupStore;
 
     return (
         <div className="alert" onClick={closeCurrentPopup}>

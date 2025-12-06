@@ -5,95 +5,20 @@ import { TaskObservable } from "../store/task.ts";
 
 class TasksHolderStore {
     tasks: TaskObservable[] = []
-
-    // попапы
-    // todo подумать, можно ли сделать общий абстрактный класс
-    showPopup = {
-        visible: false,
-        taskId: null as string | null,
-        isEdit: false,
-        // временные поля редактирования (чтобы не мутировать оригинал до Save)
-        draftTitle: '',
-        draftAbout: ''
-    };
-
-    confirmPopup = {
-        visible: false,
-        taskId: null as string | null,
-        message: ''
-    };
-
-    sharePopup = {
-        visible: false,
-        taskId: null as string | null
-    };
-
-    // --- методы ---
-    openShowPopup(taskId: string, editMode: boolean) {
-        const task = this.getTaskById(taskId);
-        if (!task) return;
-        this.showPopup = {
-            visible: true,
-            taskId: taskId,
-            isEdit: editMode,
-            draftTitle: task.title,
-            draftAbout: task.about
-        };
-    }
-
-    closeCurrentPopup() {
-        debugger
-        if (this.showPopup) {
-            this.showPopup.visible = false;
-            this.showPopup.taskId = null;
-        }
-
-        if (this.confirmPopup) {
-            this.confirmPopup.visible = false;
-            this.confirmPopup.taskId = null;
-
-        }
-
-        if (this.sharePopup) {
-            this.sharePopup.visible = false;
-            this.sharePopup.taskId = null;
-        }
-    }
-
-    saveEditedTask() {
-        if (!this.showPopup.taskId) return;
-        const task = this.getTaskById(this.showPopup.taskId);
-        if (task) {
-            task.update(this.showPopup.draftTitle, this.showPopup.draftAbout);
-        }
-        this.closeCurrentPopup();
-    }
-
-    openConfirmDelete(taskId: string) {
-        this.confirmPopup = {
-            visible: true,
-            taskId: taskId,
-            message: "Delete this task?"
-        };
-    }
-
-    confirmDelete() {
-        if (this.confirmPopup.taskId) {
-            this.deleteTaskById(this.confirmPopup.taskId);
-        }
-        this.confirmPopup.visible = false;
-        this.confirmPopup.taskId = null;
-    }
-
-    openSharePopup(taskId: string) {
-        this.sharePopup = { visible: true, taskId };
-    }
-
-    constructor() {
+    
+    constructor() { 
+        console.log("taskHolderStore inited!!")
         this.loadFromLocalStorage()
         makeAutoObservable(this)
     }
 
+    saveEditedTask(taskId : string, draftTitle: string, draftAbout: string) {
+        let task = this.getTaskById(taskId);
+        if (task) {
+            task.update(draftTitle, draftAbout);
+        }
+    }
+    
     loadFromLocalStorage() {
         const saved = localStorage.getItem('tasks');
         if (saved) {

@@ -2,6 +2,7 @@ import { observer } from "mobx-react-lite"
 import { taskHolderStore } from "../store/taskHolder";
 import { TaskObservable } from "../store/task";
 import { useState } from "react";
+import { popupStore } from "../store/popupStore";
 
 
 export const Task = observer(({ task }: { task: TaskObservable }) => {
@@ -22,15 +23,15 @@ export const Task = observer(({ task }: { task: TaskObservable }) => {
             </div>
 
             <button className="btn-delete icon-delete" onClick={() =>
-                taskHolderStore.openConfirmDelete(task.id)}></button>
+                popupStore.openConfirmDelete(task.id)}></button>
 
             <div className={isShowedTask ? "actions showed" : "actions hidden"}>
                 <button className="btn-icon icon-share"
-                    onClick={() => taskHolderStore.openSharePopup(task.id)}></button>
+                    onClick={() => popupStore.openSharePopup(task.id)}></button>
                 <button className="btn-icon icon-info"
-                    onClick={() => taskHolderStore.openShowPopup(task.id, false)}></button>
+                    onClick={() => popupStore.openShowPopup(task.id, false)}></button>
                 <button className="btn-icon icon-edit" 
-                    onClick={() => taskHolderStore.openShowPopup(task.id, true)}></button>
+                    onClick={() => popupStore.openShowPopup(task.id, true)}></button>
             </div>
         </div>
     )

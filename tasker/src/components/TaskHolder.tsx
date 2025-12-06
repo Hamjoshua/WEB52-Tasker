@@ -7,9 +7,13 @@ import NoTasks from './NoTasks.jsx'
 
 import { observer } from 'mobx-react-lite'
 import { taskHolderStore } from '../store/taskHolder.ts'
+import { popupStore } from '../store/popupStore.ts'
+
+
+import { toJS } from "mobx";
 
 export const TasksHolder = observer(() => {
-    const { showPopup, sharePopup, confirmPopup } = taskHolderStore;
+    const { sharePopup, showPopup, confirmPopup } = popupStore;
 
     return (
         <div>

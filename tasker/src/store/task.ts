@@ -5,6 +5,7 @@ export class TaskObservable {
     id: string = ""
     title : string = ""
     about : string = ""    
+    pinned : boolean = false
 
     constructor(currentTasksLength: number, title: string, about: string){
         makeAutoObservable(this)
@@ -16,5 +17,13 @@ export class TaskObservable {
     update(title: string, about: string){
         this.title = title
         this.about = about
+    }
+
+    pin(){
+        this.pinned = true
+    }
+
+    unpin(){
+        this.pinned = false
     }
 }

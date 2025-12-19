@@ -16,23 +16,40 @@ export const TasksHolder = observer(() => {
     return (
         <div>
             <FormAdd />
+
+            {taskHolderStore.tasks.filter(task => task.pinned).length > 0 && (
+                <div className="pinned-task-container">
+                    {taskHolderStore.tasks
+                        .filter(task => task.pinned)
+                        .map((task, id) => { // idx в мапе антихайп, это плохо                    
+                            return <Task task={task} />
+                        }
+                        )}
+                </div>
+            )
+            }
+
             {taskHolderStore.tasks && taskHolderStore.tasks.length === 0 && <NoTasks />}
+
             <div className="task-container">
-                {taskHolderStore.tasks.map((task, id) => ( // idx в мапе антихайп, это плохо
-                    <Task task={task} />
-                ))}
+                {taskHolderStore.tasks
+                    .filter(task => !task.pinned)
+                    .map((task, id) => { // idx в мапе антихайп, это плохо                    
+                        return <Task task={task} />
+                    }
+                    )}
             </div>
 
             {showPopup.visible && (
-                <PopupShow/>
+                <PopupShow />
             )}
 
             {confirmPopup.visible && (
-                <PopupConfirm/>
+                <PopupConfirm />
             )}
 
             {sharePopup.visible && (
-                <PopupShare/>
+                <PopupShare />
             )}
         </div>
     )

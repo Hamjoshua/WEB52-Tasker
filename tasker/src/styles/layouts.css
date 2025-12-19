@@ -10,6 +10,27 @@
     justify-content: center;
 }
 
+.pinned-task-container{
+    margin: 20px 0px;
+}
+
+.pinned-task-container::before {
+    content: "Pinned tasks";
+    display: block;
+    width: fit-content;
+    color: white;
+    margin: 10px auto;
+}
+
+.pinned-task-container::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 2px;
+    background: var(--accent-color);
+    margin: 10px auto; /* Centers the line */
+}
+
 .share-popup {
     position: fixed;
     border-radius: 10px;

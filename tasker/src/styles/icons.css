@@ -18,6 +18,14 @@
     background-image: url("../assets/icons/share.png");
 }
 
+.icon-pin {
+    background-image: url("../assets/icons/icons8-pin-16.png");
+}
+
+.icon-pined {
+    background-image: url("../assets/icons/icons8-pined-16.png");
+}
+
 .share-icon {
     width: 48px;
     height: 48px;

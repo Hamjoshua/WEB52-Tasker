@@ -16,7 +16,7 @@ export const Task = observer(({ task }: { task: TaskObservable }) => {
     const { title, about } = task
 
     return (
-        <div className="card-with-actions">
+        <div className="card-with-actions">           
             <div className="card" onClick={handleCardClicked}>
                 <span className="task-title">{title}</span>
                 <span className="task-about">{about}</span>
@@ -32,6 +32,8 @@ export const Task = observer(({ task }: { task: TaskObservable }) => {
                     onClick={() => popupStore.openShowPopup(task.id, false)}></button>
                 <button className="btn-icon icon-edit" 
                     onClick={() => popupStore.openShowPopup(task.id, true)}></button>
+                <button className="btn-icon icon-pin" 
+                    ></button>
             </div>
         </div>
     )

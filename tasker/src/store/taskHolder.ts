@@ -28,10 +28,10 @@ class TasksHolderStore {
     loadFromLocalStorage() {
         const saved = localStorage.getItem('tasks');
         if (saved) {
-            try {
+            try {                
                 const parsed = JSON.parse(saved);
                 parsed.forEach((t: any) => {
-                    let task = new TaskObservable(this.tasks.length, t.title, t.about)
+                    let task = new TaskObservable(this.tasks.length, t.title, t.about, t.pinned)
                     this.tasks.push(task)
                 });
             } catch (e) {
@@ -59,7 +59,7 @@ class TasksHolderStore {
 export const taskHolderStore: TasksHolderStore = new TasksHolderStore()
 
 reaction(
-    () => taskHolderStore.tasks.map(t => ({ title: t.title, about: t.about })),
+    () => taskHolderStore.tasks.map(t => ({ title: t.title, about: t.about, pinned: t.pinned })),
     (serializableTasks) => {
         localStorage.setItem('tasks', JSON.stringify(serializableTasks));
     },

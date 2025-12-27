@@ -41,6 +41,7 @@ function handleDragEnd(event) {
 }
 
 export const TasksHolder = observer(() => {
+    console.log(taskHolderStore.tasks)
     const { sharePopup, showPopup, confirmPopup } = popupStore;
 
     const sensors = useSensors(

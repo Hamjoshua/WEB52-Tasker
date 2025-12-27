@@ -35,7 +35,7 @@ function handleDragEnd(event) {
         );
         const newIndex = taskHolderStore.tasks.findIndex(
             (task) => task.id === over.id
-        );        
+        );
         taskHolderStore.reorderTasks(oldIndex, newIndex);
     }
 }
@@ -44,7 +44,12 @@ export const TasksHolder = observer(() => {
     const { sharePopup, showPopup, confirmPopup } = popupStore;
 
     const sensors = useSensors(
-        useSensor(PointerSensor),
+        useSensor(PointerSensor, {
+            activationConstraint: {
+                delay: 200, // чтобы он долго долго держал прежде чем драгнуть
+                tolerance: 5,
+            },
+        }),
         useSensor(KeyboardSensor, {
             coordinateGetter: sortableKeyboardCoordinates,
         })
@@ -62,8 +67,8 @@ export const TasksHolder = observer(() => {
                 <div className="pinned-task-container">
                     {taskHolderStore.tasks
                         .filter(task => task.pinned)
-                        .map((task, id) => { // idx в мапе антихайп, это плохо                    
-                            return <Task task={task} />
+                        .map((task) => { // idx в мапе антихайп, это плохо                    
+                            return <Task task={task} key={task.id} />
                         }
                         )}
                 </div>
@@ -78,8 +83,8 @@ export const TasksHolder = observer(() => {
                 <div className="task-container">
                     {taskHolderStore.tasks
                         .filter(task => !task.pinned)
-                        .map((task, id) => { // idx в мапе антихайп, это плохо                    
-                            return <Task task={task} />
+                        .map((task) => { // idx в мапе антихайп, это плохо                    
+                            return <Task task={task} key={task.id}/>
                         }
                         )}
                 </div>

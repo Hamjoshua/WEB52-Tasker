@@ -14,7 +14,7 @@ export class PopupStore {
 
     showPopup = {
         visible: false,
-        taskId: null as string | null,
+        taskId: null as number | null,
         isEdit: false,
         // временные поля редактирования (чтобы не мутировать оригинал до Save)
         draftTitle: '',
@@ -23,13 +23,13 @@ export class PopupStore {
 
     confirmPopup = {
         visible: false,
-        taskId: null as string | null,
+        taskId: null as number | null,
         message: ''
     };
 
     sharePopup = {
         visible: false,
-        taskId: null as string | null
+        taskId: null as number | null
     };
 
     public closeCurrentPopup() {
@@ -50,7 +50,7 @@ export class PopupStore {
         }
     }
 
-    public openShowPopup(taskId: string, editMode: boolean) {
+    public openShowPopup(taskId: number, editMode: boolean) {
         const task = taskHolderStore.getTaskById(taskId);
         if (!task) return;
         this.showPopup = {
@@ -62,11 +62,11 @@ export class PopupStore {
         };
     }
 
-    openSharePopup(taskId: string) {
+    openSharePopup(taskId: number) {
         this.sharePopup = { visible: true, taskId };
     }
 
-    openConfirmDelete(taskId: string) {
+    openConfirmDelete(taskId: number) {
         this.confirmPopup = {
             visible: true,
             taskId: taskId,

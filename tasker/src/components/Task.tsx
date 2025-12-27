@@ -2,8 +2,8 @@ import { observer } from "mobx-react-lite"
 import { TaskObservable } from "../store/task";
 import { useState } from "react";
 import { popupStore } from "../store/popupStore";
-import {useSortable} from '@dnd-kit/sortable';
-import {CSS} from '@dnd-kit/utilities';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
 
 export const Task = observer(({ task }: { task: TaskObservable }) => {
@@ -16,8 +16,8 @@ export const Task = observer(({ task }: { task: TaskObservable }) => {
         setNodeRef,
         transform,
         transition,
-    } = useSortable({id: task.id});
-  
+    } = useSortable({ id: task.id });
+
     const style = {
         transform: CSS.Transform.toString(transform),
         transition,

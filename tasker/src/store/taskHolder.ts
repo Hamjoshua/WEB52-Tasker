@@ -1,10 +1,11 @@
 import { makeAutoObservable, reaction } from "mobx";
 import { TaskObservable } from "../store/task.ts";
 import { Task } from "../components/Task.tsx";
+import { arrayMove } from "@dnd-kit/sortable";
 
 // todo этот класс может использовать const popup с enum параметрами
 
-class TasksHolderStore {
+class TasksHolderStore {    
     tasks: TaskObservable[] = []
 
     constructor() {
@@ -13,7 +14,11 @@ class TasksHolderStore {
         makeAutoObservable(this)
     }
 
-    saveEditedTask(taskId: string, draftTitle: string, draftAbout: string) {
+    reorderTasks(oldIndex: number, newIndex: number) {
+        this.tasks = arrayMove(this.tasks, oldIndex, newIndex);
+    }
+
+    saveEditedTask(taskId: number, draftTitle: string, draftAbout: string) {
         let task = this.getTaskById(taskId);
         if (task) {
             task.update(draftTitle, draftAbout);
@@ -39,12 +44,12 @@ class TasksHolderStore {
         this.tasks.push(new TaskObservable(this.tasks.length, title, about));
     }
 
-    getTaskById(taskId: string) {
+    getTaskById(taskId: number) {
         let task: TaskObservable = this.tasks.find(d => d.id == taskId)!!
         return task
     }
 
-    deleteTaskById(taskId: string) {
+    deleteTaskById(taskId: number) {
         let task: TaskObservable = this.tasks.find(d => d.id == taskId)!!
         let taskPos = this.tasks.indexOf(task)
         this.tasks.splice(taskPos, 1)

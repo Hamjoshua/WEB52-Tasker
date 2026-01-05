@@ -1,0 +1,153 @@
+
+button,
+.card,
+input,
+textarea {
+    border-color: var(--accent-dark-color);
+    border-style: solid;
+    border-radius: 7px;
+    border-width: 2px;
+    color: var(--text-color);
+    background-color: var(--primary-dark-color);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+input {
+    min-height: 32px;
+    padding: 0px 10px;
+}
+
+textarea {
+    padding: 7px 10px;
+}
+
+input:read-only,
+textarea:read-only {
+    border-color: var(--primary-dark-color);
+    pointer-events: none;
+}
+
+button:hover {
+    background-color: var(--on-primary-color);
+    transition: 0.1s;
+}
+
+button:active {
+    background-color: var(--accent-dark-color);
+    transition: 0.1s;
+}
+
+button.btn-add {
+    border-color: var(--accent-color);
+    transition: 0.15s;
+    padding: 35px;
+    font-size: 24px;
+    border-radius: 10px;
+}
+
+button.btn-delete {
+    position: absolute;
+    right: 10px;
+    padding: 16px;
+    border-color: var(--accent-dark-color);
+    z-index: 2;
+    top: 20px;
+}
+
+button.btn-icon {
+    padding: 18px;
+    background-position: center;
+    object-fit: cover;
+    object-position: center;
+}
+
+button.btn-text {
+    font-size: 10px;
+    min-width: 64px;
+    padding: 5px 7px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    justify-content: end;
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    top: 100%;
+}
+
+.actions.showed {
+    position: relative;
+    transform: translateY(0%);
+    transition: 0.5s;
+}
+
+.actions.hidden {
+    transform: translateY(-150%);
+    transition: 0.5s;
+}
+
+.card-with-actions {
+    margin: 10px 0px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;    
+}
+
+.card {    
+    position: relative;
+    background-color: var(--on-primary-color);    
+    display: flex;
+    gap: 5px;
+    z-index: 2;
+    padding: 16px;
+    flex-direction: column;
+}
+
+.card:hover {
+    background-color: var(--primary-dark-color);
+    transition: 0.1s;
+}
+
+.card:active {
+    background-color: var(--primary-color);
+    transition: 0.1s;
+}
+
+.card>span {
+    pointer-events: none;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    margin-right: 20px;
+}
+
+.task-title {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 100%;
+}
+
+.tool-panel {
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+}
+
+.tool-panel-inputs {
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2px
+}
+
+.example-link {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--on-primary-color);
+    text-decoration: none;
+}
